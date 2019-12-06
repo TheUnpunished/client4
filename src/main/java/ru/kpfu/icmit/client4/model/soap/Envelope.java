@@ -1,32 +1,25 @@
 package ru.kpfu.icmit.client4.model.soap;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "Envelope")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Envelope {
 
     private Header header;
-
     private Body body;
 
-    @XmlElement(name = "Header")
-    public Header getHeader() {
-        return header;
-    }
 
-    public void setHeader(Header header) {
-        this.header = header;
-    }
-
-    @XmlElement(name = "Body")
-    public Body getBody() {
-        return body;
-    }
-
-    public void setBody(Body body) {
-        this.body = body;
-    }
 
     @Override
     public String toString() {

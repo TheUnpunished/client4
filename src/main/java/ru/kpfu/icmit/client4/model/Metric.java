@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.kpfu.icmit.client4.model.soap.Content;
 
 import javax.persistence.*;
 
@@ -12,11 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Builder
-@Entity
-public class Metric {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "metricIdGenerator")
-    @SequenceGenerator(name = "metricIdGenerator", sequenceName = "metric_seq", allocationSize=1)
+public class Metric extends Content {
     private Long id;
     private String code;
     private String metricName;

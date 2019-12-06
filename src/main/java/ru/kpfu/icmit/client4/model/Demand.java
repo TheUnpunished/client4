@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.kpfu.icmit.client4.model.soap.Content;
 
 import javax.persistence.*;
 
@@ -12,14 +13,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 @Builder
-@Entity
-public class Demand {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "demandIdGenerator")
-    @SequenceGenerator(name = "demandIdGenerator", sequenceName = "demand_seq", allocationSize = 1)
+public class Demand extends Content {
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "fk_demand_nomenclature")
     private Nomenclature nomenclature;
     private Integer count;
 }

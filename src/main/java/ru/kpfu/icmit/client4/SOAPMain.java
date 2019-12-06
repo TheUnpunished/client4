@@ -9,22 +9,26 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.StringWriter;
+import java.nio.charset.Charset;
 import java.sql.Timestamp;
 
 public class SOAPMain {
 
     public static void main(String[] args) {
 
-        createEnvelope();
+        String envelope = createEnvelope();
 
         //Envelope envelope = readEnvelope();
         //System.out.println(envelope);
         SOAPSender sender = new SOAPSender();
-        sender.sendNomenclature(new File("envelope.xml"));
+        sender.send(new ByteArrayInputStream(envelope.getBytes(Charset.defaultCharset())));
     }
 
-    public static void createEnvelope() {
+    public static String createEnvelope() {
 
         Envelope envelope = new Envelope();
         Header header = new Header();
@@ -45,11 +49,13 @@ public class SOAPMain {
             Marshaller marshaller = context.createMarshaller();
             // устанавливаем флаг для читабельного вывода XML в JAXB
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            StringWriter stringWriter = new StringWriter();
+            marshaller.marshal(envelope, stringWriter);
+            return stringWriter.toString();
 
-            // маршаллинг объекта в файл
-            marshaller.marshal(envelope, new File("envelope.xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
+            return null;
         }
     }
 

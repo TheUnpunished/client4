@@ -1,33 +1,31 @@
 package ru.kpfu.icmit.client4.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ru.kpfu.icmit.client4.model.soap.Content;
+import ru.kpfu.icmit.client4.util.TimestampAdapter;
 
-import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.UUID;
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Nomenclature extends Content {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "nomenclatureIdGenerator")
-    @SequenceGenerator(name = "nomenclatureIdGenerator", sequenceName = "nomenclature_seq", allocationSize=1)
     private Long id;
     private UUID uid;
     private String productName;
-    @Temporal(TemporalType.TIMESTAMP)
+    @XmlJavaTypeAdapter(TimestampAdapter.class)
     private Timestamp createDate;
-    @Temporal(TemporalType.TIMESTAMP)
+    @XmlJavaTypeAdapter(TimestampAdapter.class)
     private Timestamp modifyDate;
-    @ManyToOne
-    @JoinColumn(name = "fk_nomenclature_metric")
     private Metric metric;
     private Boolean relevant;
 

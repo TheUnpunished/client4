@@ -6,31 +6,28 @@ import java.net.URL;
 
 public class SOAPSender {
 
-    /**
-     * Пример отправки XML файла с данными по новой номенклатуре на сервер центральной площадки
-     * @param file
-     */
-    public void sendNomenclature(File file) {
+
+    public void send(InputStream inputStream) {
 
 
         try {
 
             //URL url = new URL("http://185.20.227.163:8080/server4/addnomenclature");
-            URL url = new URL("http://localhost:8080/server4/addnomenclature");
+            URL url = new URL("http://localhost:8080/server4/nomenclature/add");
 
-            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/xml");
 
             connection.setDoOutput(true);
 
-            try (OutputStream os = connection.getOutputStream();
-                 FileInputStream fis = new FileInputStream(file)) {
+            try (OutputStream os = connection.getOutputStream()) {
+
 
                 byte[] buf = new byte[2048];
                 int r = 0;
-                while ((r = fis.read(buf)) != -1) {
+                while ((r = inputStream.read(buf)) != -1) {
                     os.write(buf,0,r);
                 }
 
