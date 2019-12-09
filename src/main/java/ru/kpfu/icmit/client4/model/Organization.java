@@ -3,19 +3,18 @@ package ru.kpfu.icmit.client4.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.kpfu.icmit.client4.model.soap.Content;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Organization extends Content {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "organizationIdGenerator")
-    @SequenceGenerator(name = "organizationIdGenerator", sequenceName = "organization_seq", allocationSize=1)
-    private Long id;
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+@SequenceGenerator(name = "idGenerator", sequenceName = "organization_seq", allocationSize=1)
+public class Organization extends IdEntity {
     private String name;
 }

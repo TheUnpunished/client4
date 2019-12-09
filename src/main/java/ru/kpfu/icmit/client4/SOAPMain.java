@@ -1,9 +1,9 @@
 package ru.kpfu.icmit.client4;
 
 import ru.kpfu.icmit.client4.model.Nomenclature;
-import ru.kpfu.icmit.client4.model.soap.Body;
-import ru.kpfu.icmit.client4.model.soap.Envelope;
-import ru.kpfu.icmit.client4.model.soap.Header;
+import ru.kpfu.icmit.client4.util.soap.Body;
+import ru.kpfu.icmit.client4.util.soap.Envelope;
+import ru.kpfu.icmit.client4.util.soap.Header;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -11,10 +11,9 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
-import java.sql.Timestamp;
+import java.util.UUID;
 
 public class SOAPMain {
 
@@ -37,17 +36,13 @@ public class SOAPMain {
         envelope.setBody(body);
 
         Nomenclature nomenclature = Nomenclature.builder()
-                .productName("Ж/Д Вагон")
-                .createDate(new Timestamp(System.currentTimeMillis()))
-                .modifyDate(new Timestamp(System.currentTimeMillis()))
+                .uid(UUID.randomUUID())
+                .productName("Ж/Д Вагон 2")
                 .build();
-
         body.setContent(nomenclature);
-
         try {
             JAXBContext context = JAXBContext.newInstance(Envelope.class);
             Marshaller marshaller = context.createMarshaller();
-            // устанавливаем флаг для читабельного вывода XML в JAXB
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             StringWriter stringWriter = new StringWriter();
             marshaller.marshal(envelope, stringWriter);
