@@ -17,4 +17,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @SequenceGenerator(name = "idGenerator", sequenceName = "organization_seq", allocationSize=1)
 public class Organization extends IdEntity {
     private String name;
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

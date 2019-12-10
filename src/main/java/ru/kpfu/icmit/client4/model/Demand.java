@@ -24,4 +24,15 @@ public class Demand extends IdEntity {
             foreignKey = @ForeignKey(name = "fk_demand_nomenclature"))
     private Nomenclature nomenclature;
     private Integer count;
+
+    @Override
+    public String toString(){
+        return nomenclature.toString() + " - "
+                + "Количество: " + count.toString();
+    }
+
+    public String toString2(Organization organization){
+       return "Спрос организацией \"" + organization.toString()
+                + "\" в количестве " + count.toString();
+    }
 }

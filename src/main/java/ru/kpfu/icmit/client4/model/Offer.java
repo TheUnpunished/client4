@@ -24,4 +24,16 @@ public class Offer extends IdEntity {
     private Nomenclature nomenclature;
     private Double price;
     private Integer count;
+
+    @Override
+    public String toString(){
+        return nomenclature.toString() +" - "
+                + "Цена :" + price.toString() + " - "
+                + "Количество: " + count.toString();
+    }
+
+    public String toString2(Organization organization){
+        return "Предложение организацией \"" + organization.toString()
+                + "\" в количестве " + count.toString();
+    }
 }

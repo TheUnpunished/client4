@@ -40,4 +40,13 @@ public class Contract extends IdEntity {
     private Organization offeringOrg;
     private Integer totalCount;
     private Double totalPrice;
+
+    @Override
+    public String toString(){
+        return nomenclature.toString() + " - "
+                + demand.toString2(demandingOrg) + " - "
+                + offer.toString2(offeringOrg) + " - "
+                + "Окончательная цена: " + totalPrice.toString() + " - "
+                + "Окончательное количество: " + totalCount.toString();
+    }
 }

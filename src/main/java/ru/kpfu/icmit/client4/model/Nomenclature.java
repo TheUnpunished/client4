@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.kpfu.icmit.client4.util.MyDateFormat;
 import ru.kpfu.icmit.client4.util.TimestampAdapter;
 
 import javax.persistence.*;
@@ -41,5 +42,15 @@ public class Nomenclature extends IdEntity {
         this.productName = productName;
         this.metric = metric;
         this.relevant = true;
+    }
+
+    @Override
+    public String toString(){
+        String relevantString = relevant? "Открыта" : "Закрыта";
+        return "Товар: " + productName + " - "
+                + "Создан: " + MyDateFormat.format.format(createDate) + " - "
+                + "Обновлён: " + MyDateFormat.format.format(modifyDate) + " - "
+                + metric.toString() + " - "
+                + relevantString;
     }
 }

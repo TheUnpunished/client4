@@ -11,14 +11,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class Envelope {
 
     private Header header;
     private Body body;
-
-
 
     @Override
     public String toString() {

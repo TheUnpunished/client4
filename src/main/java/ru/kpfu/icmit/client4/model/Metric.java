@@ -21,4 +21,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 public class Metric extends IdEntity {
     private String code;
     private String metricName;
+
+    @Override
+    public String toString(){
+        return metricName + ": " + code;
+    }
 }
