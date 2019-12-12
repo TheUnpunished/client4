@@ -3,7 +3,7 @@ package ru.kpfu.icmit.client4.util.soap;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.kpfu.icmit.server4.model.*;
+import ru.kpfu.icmit.client4.model.*;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
