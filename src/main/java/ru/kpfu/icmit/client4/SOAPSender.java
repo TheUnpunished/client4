@@ -1,26 +1,10 @@
 package ru.kpfu.icmit.client4;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.catalina.connector.InputBuffer;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
 import ru.kpfu.icmit.client4.model.Nomenclature;
 import ru.kpfu.icmit.client4.util.soap.Envelope;
-import ru.kpfu.icmit.client4.util.soap.XmlList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.soap.MessageFactory;
-import javax.xml.soap.MimeHeaders;
-import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPMessage;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -30,8 +14,8 @@ public class SOAPSender {
 
     public void send(InputStream inputStream) {
         try {
-//            URL url = new URL("http://185.20.227.163:8080/server4/nomenclature/add");
-            URL url = new URL("http://localhost:8080/server4/nomenclature/add");
+            URL url = new URL("http://185.20.227.163:8080/server4/nomenclature/add");
+//            URL url = new URL("http://localhost:8080/server4/nomenclature/add");
 //            разприбаздан (на английском)
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
@@ -56,7 +40,6 @@ public class SOAPSender {
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             Envelope envelope = (Envelope) unmarshaller.unmarshal(new ByteArrayInputStream(env.getBytes(Charset.defaultCharset())));
             Nomenclature nomenclature = (Nomenclature) envelope.getBody().getContent();
-            System.out.println(nomenclature);
 
         } catch (Exception e) {
             e.printStackTrace();

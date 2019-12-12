@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,6 +19,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @SequenceGenerator(name = "idGenerator", sequenceName = "offer_seq", allocationSize=1)
 public class Offer extends IdEntity {
+
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @ManyToOne
     @JoinColumns(value = {@JoinColumn(referencedColumnName = "id")},
             foreignKey = @ForeignKey(name = "fk_offer_nomenclature"))

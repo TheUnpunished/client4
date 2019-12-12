@@ -20,10 +20,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @SequenceGenerator(name = "idGenerator", sequenceName = "metric_seq", allocationSize=1)
 public class Metric extends IdEntity {
     private String code;
-    private String metricName;
+    private String name;
 
     @Override
     public String toString(){
-        return metricName + ": " + code;
+        return name + ": " + code;
     }
 }

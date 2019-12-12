@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,6 +20,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @SequenceGenerator(name = "idGenerator", sequenceName = "demand_seq", allocationSize = 1)
 public class Demand extends IdEntity {
 
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @ManyToOne
     @JoinColumns(value = {@JoinColumn(referencedColumnName = "id")},
             foreignKey = @ForeignKey(name = "fk_demand_nomenclature"))
@@ -32,7 +34,7 @@ public class Demand extends IdEntity {
     }
 
     public String toString2(Organization organization){
-       return "Спрос организацией \"" + organization.toString()
+        return "Спрос организацией \"" + organization.toString()
                 + "\" в количестве " + count.toString();
     }
 }

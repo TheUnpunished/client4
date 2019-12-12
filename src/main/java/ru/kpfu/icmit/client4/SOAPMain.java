@@ -1,5 +1,6 @@
 package ru.kpfu.icmit.client4;
 
+import ru.kpfu.icmit.client4.model.Metric;
 import ru.kpfu.icmit.client4.model.Nomenclature;
 import ru.kpfu.icmit.client4.util.soap.Body;
 import ru.kpfu.icmit.client4.util.soap.Envelope;
@@ -37,6 +38,7 @@ public class SOAPMain {
 
         Nomenclature nomenclature = Nomenclature.builder()
                 .uid(UUID.randomUUID())
+                .metric(new Metric("0001", "метры"))
                 .productName("Ж/Д Вагон 2")
                 .build();
         body.setContent(nomenclature);

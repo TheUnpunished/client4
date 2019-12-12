@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import ru.kpfu.icmit.client4.util.MyDateFormat;
 import ru.kpfu.icmit.client4.util.TimestampAdapter;
 
@@ -22,6 +23,7 @@ import java.util.UUID;
 @XmlAccessorType(XmlAccessType.FIELD)
 @SequenceGenerator(name = "idGenerator", sequenceName = "nomenclature_seq", allocationSize=1)
 public class Nomenclature extends IdEntity {
+
     private UUID uid;
     private String productName;
     @XmlJavaTypeAdapter(TimestampAdapter.class)
@@ -29,6 +31,7 @@ public class Nomenclature extends IdEntity {
     @XmlJavaTypeAdapter(TimestampAdapter.class)
     private Timestamp modifyDate;
 
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @ManyToOne
     @JoinColumns(value = {@JoinColumn(referencedColumnName = "id")},
             foreignKey = @ForeignKey(name = "fk_nomenclature_metric"))
